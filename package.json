@@ -1,0 +1,11 @@
+{
+  "name": "toss-tech-clone-project",
+  "version": "1.0.0",
+  "description": "프레임워크 없이 Vanila JavaScript를 이용해 토스 개발 블로그 클론하기",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
