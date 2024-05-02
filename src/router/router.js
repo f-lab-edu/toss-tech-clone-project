@@ -80,6 +80,9 @@ export default () => {
     start: () => {
       checkRoutes();
       // window.setInterval(checkRoutes, 10000);
+      window.addEventListener('popstate', () => {
+        checkRoutes();
+      });
 
       document.body.addEventListener('click', (e) => {
         const { target } = e;
