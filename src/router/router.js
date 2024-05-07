@@ -87,7 +87,7 @@ export default () => {
       document.body.addEventListener('click', (e) => {
         const { target } = e;
 
-        if (target.matches(A_SELECTOR)) {
+        if (target.closest(A_SELECTOR)) {
           e.preventDefault();
           router.navigate(target.href);
         }
