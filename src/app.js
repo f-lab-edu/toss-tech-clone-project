@@ -30,13 +30,13 @@ const fetchData = () => {
         anchor.setAttribute('href', `/articles/${index}`);
 
         const listTitle = document.createElement('h3');
-        heading.textContent = article.title;
+        listTitle.textContent = article.title;
 
         const subTitle = document.createElement('p');
-        paragraph.textContent = article.subTitle;
+        subTitle.textContent = article.subTitle;
 
         const dateCreated = document.createElement('span');
-        span.textContent = article.date;
+        dateCreated.textContent = article.date;
 
         anchor.appendChild(listTitle);
         anchor.appendChild(subTitle);
