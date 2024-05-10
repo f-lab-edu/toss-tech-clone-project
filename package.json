@@ -4,12 +4,13 @@
   "description": "프레임워크 없이 Vanila JavaScript를 이용해 토스 개발 블로그 클론하기",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "http-server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0"
   }
 }
