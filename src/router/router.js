@@ -89,9 +89,7 @@ export default () => {
 
         if (target.closest(A_SELECTOR)) {
           e.preventDefault();
-          const href = target.href
-            ? target.href
-            : target.closest(A_SELECTOR).href;
+          const href = target.closest(A_SELECTOR).href;
           router.navigate(href);
         }
       });
