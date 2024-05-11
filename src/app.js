@@ -1,15 +1,27 @@
 const start = () => {
   const app = document.getElementById('root');
+  app.innerHTML = '';
 
-  app.innerHTML = `
-    <header></header>
-    <section>
-      <h1 id="main-title">개발</h1>
-      <div id="main-container">
-        <ul id="article-list"></ul>
-      </div>
-    </section>
-  `;
+  const header = document.createElement('header');
+  const mainSection = document.createElement('section');
+
+  const mainTitle = document.createElement('h1');
+  mainTitle.setAttribute('id', 'main-title');
+  mainTitle.textContent = '개발';
+
+  const mainContainer = document.createElement('div');
+  mainContainer.setAttribute('id', 'main-container');
+
+  const articleList = document.createElement('ul');
+  articleList.setAttribute('id', 'article-list');
+
+  mainContainer.appendChild(articleList);
+
+  mainSection.appendChild(mainTitle);
+  mainSection.appendChild(mainContainer);
+
+  app.appendChild(header);
+  app.appendChild(mainSection);
 };
 
 // document.addEventListener('DOMContentLoaded', start);
