@@ -1,15 +1,26 @@
 const start = () => {
   const app = document.getElementById('root');
 
-  app.innerHTML = `
-    <header></header>
-    <section>
-      <h1 id="main-title">개발</h1>
-      <div id="main-container">
-        <ul id="article-list"></ul>
-      </div>
-    </section>
-  `;
+  const header = document.createElement('header');
+  const mainSection = document.createElement('section');
+
+  const mainTitle = document.createElement('h1');
+  mainTitle.setAttribute('id', 'main-title');
+  mainTitle.textContent = '개발';
+
+  const mainContainer = document.createElement('div');
+  mainContainer.setAttribute('id', 'main-container');
+
+  const articleList = document.createElement('ul');
+  articleList.setAttribute('id', 'article-list');
+
+  mainContainer.appendChild(articleList);
+
+  mainSection.appendChild(mainTitle);
+  mainSection.appendChild(mainContainer);
+
+  app.appendChild(header);
+  app.appendChild(mainSection);
 };
 
 // document.addEventListener('DOMContentLoaded', start);
@@ -24,13 +35,25 @@ const fetchData = () => {
         const listItem = document.createElement('li');
         listItem.classList.add('list-item');
         listItem.setAttribute('data-navigation', '');
-        listItem.innerHTML = `
-          <a data-navigation href="/articles/${index}">
-            <h3>${article.title}</h3>
-            <p>${article.subTitle}</p>
-            <span>${article.date}</span>
-          </a>
-        `;
+
+        const anchor = document.createElement('a');
+        anchor.setAttribute('data-navigation', '');
+        anchor.setAttribute('href', `/articles/${index}`);
+
+        const listTitle = document.createElement('h3');
+        listTitle.textContent = article.title;
+
+        const subTitle = document.createElement('p');
+        subTitle.textContent = article.subTitle;
+
+        const dateCreated = document.createElement('span');
+        dateCreated.textContent = article.date;
+
+        anchor.appendChild(listTitle);
+        anchor.appendChild(subTitle);
+        anchor.appendChild(dateCreated);
+
+        listItem.appendChild(anchor);
         list.appendChild(listItem);
       });
     });
