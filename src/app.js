@@ -1,6 +1,5 @@
 const start = () => {
   const app = document.getElementById('root');
-  app.innerHTML = '';
 
   const header = document.createElement('header');
   const mainSection = document.createElement('section');
