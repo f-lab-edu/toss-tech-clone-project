@@ -1,4 +1,9 @@
-import { start, fetchData } from '../app.js';
+import {
+  start,
+  fetchData,
+  createArticleListItem,
+  addListItems,
+} from '../app.js';
 import articleDetail from '../article.js';
 
 const datas = () =>
@@ -11,7 +16,10 @@ const datas = () =>
 export default (container) => {
   const home = () => {
     start();
-    fetchData();
+    fetchData().then((articles) => {
+      const listItems = createArticleListItem(articles);
+      addListItems(listItems);
+    });
   };
 
   const article = async (params) => {
