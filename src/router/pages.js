@@ -18,7 +18,6 @@ export default (container) => {
     start();
     fetchData().then((articles) => {
       const listItems = createArticleListItem(articles);
-      console.log(listItems);
       addListItems(listItems);
     });
   };
