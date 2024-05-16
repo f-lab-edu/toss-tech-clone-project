@@ -2,7 +2,8 @@ const ROUTE_PARAMETER_REGEXP = /:(\w+)/g;
 const URL_FRAGMENT_REGEXP = '([^\\/]+)';
 const A_SELECTOR = 'a[data-navigation]';
 
-const extractUrlParams = (route, pathname) => {
+export const extractUrlParams = (route, pathname) => {
+  console.log(route);
   const params = {};
 
   if (route.params.length === 0) {
