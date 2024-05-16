@@ -60,9 +60,8 @@ const fetchData = () => {
     .then((response) => response.json())
     .then((data) => {
       const { articles } = data;
-
-      createArticleListItem(articles);
+      return articles;
     });
 };
 
-export { start, fetchData };
+export { start, fetchData, createArticleListItem };
