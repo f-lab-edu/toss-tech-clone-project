@@ -1,4 +1,9 @@
-import { start, fetchData, createArticleListItem } from '../app.js';
+import {
+  start,
+  fetchData,
+  createArticleListItem,
+  addListItems,
+} from '../app.js';
 import articleDetail from '../article.js';
 
 const datas = () =>
@@ -12,7 +17,9 @@ export default (container) => {
   const home = () => {
     start();
     fetchData().then((articles) => {
-      createArticleListItem(articles);
+      const listItems = createArticleListItem(articles);
+      console.log(listItems);
+      addListItems(listItems);
     });
   };
 

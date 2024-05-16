@@ -26,7 +26,7 @@ const start = () => {
 // document.addEventListener('DOMContentLoaded', start);
 
 const createArticleListItem = (articles) => {
-  const list = document.getElementById('article-list');
+  const listItems = [];
 
   articles.forEach((article, index) => {
     const listItem = document.createElement('li');
@@ -51,7 +51,17 @@ const createArticleListItem = (articles) => {
     anchor.appendChild(dateCreated);
 
     listItem.appendChild(anchor);
-    list.appendChild(listItem);
+    listItems.push(listItem);
+  });
+
+  return listItems;
+};
+
+const addListItems = (listItems) => {
+  const list = document.getElementById('article-list');
+
+  listItems.forEach((item) => {
+    list.appendChild(item);
   });
 };
 
@@ -64,4 +74,4 @@ const fetchData = () => {
     });
 };
 
-export { start, fetchData, createArticleListItem };
+export { start, fetchData, createArticleListItem, addListItems };
