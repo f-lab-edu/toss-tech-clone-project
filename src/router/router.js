@@ -89,7 +89,8 @@ export default () => {
 
         if (target.closest(A_SELECTOR)) {
           e.preventDefault();
-          router.navigate(target.href);
+          const href = target.closest(A_SELECTOR).href;
+          router.navigate(href);
         }
       });
     },
