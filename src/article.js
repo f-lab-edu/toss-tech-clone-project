@@ -1,18 +1,39 @@
-const articleDetail = (articleItem) => {
+const createArticleDetailPage = (articleItem) => {
   const { title, date, imageUrl, author, article } = articleItem;
 
-  return `
-    <div id="article-container">
-      <header class="article-header">
-        <h1>${title}</h1>
-        <p>${author}</p>
-        <span>${date}</span>
-      </header>
-      <section class="article-main">
-        <p>${article}</p>
-      </section>
-    </div>
-  `;
+  const articleContainer = document.createElement('div');
+  articleContainer.setAttribute('id', 'article-container');
+
+  // article header
+  const articleHeader = document.createElement('header');
+  articleHeader.setAttribute('class', 'article-header');
+
+  const articleTitle = document.createElement('h1');
+  articleTitle.textContent = title;
+
+  const authorInfo = document.createElement('p');
+  authorInfo.textContent = author;
+
+  const uploadDate = document.createElement('span');
+  uploadDate.textContent = date;
+
+  articleHeader.appendChild(articleTitle);
+  articleHeader.appendChild(authorInfo);
+  articleHeader.appendChild(uploadDate);
+
+  articleContainer.appendChild(articleHeader);
+
+  // article main
+  const articleMainSection = document.createElement('section');
+  articleMainSection.setAttribute('class', 'article-main');
+
+  const articleMainText = document.createElement('p');
+  articleMainText.textContent = article;
+
+  articleMainSection.appendChild(articleMainText);
+  articleContainer.appendChild(articleMainSection);
+
+  return articleContainer;
 };
 
-export default articleDetail;
+export default createArticleDetailPage;

@@ -1,5 +1,5 @@
 import { start, fetchData } from '../app.js';
-import articleDetail from '../article.js';
+import createArticleDetailPage from '../article.js';
 
 const datas = () =>
   fetch('../../data.json')
@@ -17,7 +17,10 @@ export default (container) => {
   const article = async (params) => {
     const { id } = params;
     const articles = await datas();
-    container.innerHTML = articleDetail(articles[id]);
+
+    container.innerHTML = '';
+    const articleContent = createArticleDetailPage(articles[id]);
+    container.appendChild(articleContent);
   };
 
   const notFound = () => {
