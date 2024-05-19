@@ -1,5 +1,10 @@
-import { start, fetchData } from '../app.js';
-import articleDetail from '../article.js';
+import {
+  start,
+  fetchData,
+  createArticleListItem,
+  addListItems,
+} from '../app.js';
+import createArticleDetailPage from '../article.js';
 
 const datas = () =>
   fetch('../../data.json')
@@ -11,13 +16,17 @@ const datas = () =>
 export default (container) => {
   const home = () => {
     start();
-    fetchData();
+    fetchData().then((articles) => {
+      const listItems = createArticleListItem(articles);
+      addListItems(listItems);
+    });
   };
 
   const article = async (params) => {
     const { id } = params;
     const articles = await datas();
-    container.innerHTML = articleDetail(articles[id]);
+
+    container.replaceChildren(createArticleDetailPage(articles[id]));
   };
 
   const notFound = () => {
