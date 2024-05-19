@@ -25,7 +25,8 @@ export default (container) => {
   const article = async (params) => {
     const { id } = params;
     const articles = await datas();
-    container.innerHTML = articleDetail(articles[id]);
+
+    container.replaceChildren(createArticleDetailPage(articles[id]));
   };
 
   const notFound = () => {
