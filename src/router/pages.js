@@ -4,7 +4,7 @@ import {
   createArticleListItem,
   addListItems,
 } from '../app.js';
-import articleDetail from '../article.js';
+import createArticleDetailPage from '../article.js';
 
 const datas = () =>
   fetch('../../data.json')
