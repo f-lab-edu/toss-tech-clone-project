@@ -18,9 +18,7 @@ export default (container) => {
     const { id } = params;
     const articles = await datas();
 
-    container.innerHTML = '';
-    const articleContent = createArticleDetailPage(articles[id]);
-    container.appendChild(articleContent);
+    container.replaceChildren(createArticleDetailPage(articles[id]));
   };
 
   const notFound = () => {
