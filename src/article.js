@@ -4,7 +4,6 @@ const createArticleDetailPage = (articleItem) => {
   const articleContainer = document.createElement('div');
   articleContainer.setAttribute('id', 'article-container');
 
-  // article header
   const articleHeader = document.createElement('header');
   articleHeader.setAttribute('class', 'article-header');
 
@@ -23,7 +22,6 @@ const createArticleDetailPage = (articleItem) => {
 
   articleContainer.appendChild(articleHeader);
 
-  // article main
   const articleMainSection = document.createElement('section');
   articleMainSection.setAttribute('class', 'article-main');
 
