@@ -1,7 +1,5 @@
 const start = () => {
-  const app = document.getElementById('root');
-
-  app.innerHTML = '';
+  const homeContainer = document.createElement('div');
 
   const header = document.createElement('header');
   const mainSection = document.createElement('section');
@@ -21,8 +19,10 @@ const start = () => {
   mainSection.appendChild(mainTitle);
   mainSection.appendChild(mainContainer);
 
-  app.appendChild(header);
-  app.appendChild(mainSection);
+  homeContainer.appendChild(header);
+  homeContainer.appendChild(mainSection);
+
+  return homeContainer;
 };
 
 // document.addEventListener('DOMContentLoaded', start);
