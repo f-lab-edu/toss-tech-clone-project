@@ -8,7 +8,8 @@ import createArticleDetailPage from '../article.js';
 
 export default (container) => {
   const home = () => {
-    start();
+    container.replaceChildren(start());
+
     fetchData().then((articles) => {
       const listItems = createArticleListItem(articles);
       addListItems(listItems);
