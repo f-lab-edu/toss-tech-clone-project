@@ -1,4 +1,13 @@
-const createArticleDetailPage = (articleItem) => {
+type articleProps = {
+  title: string;
+  subTitle: string;
+  date: string;
+  imageUrl: string;
+  article: string;
+  author: string;
+};
+
+const createArticleDetailPage = (articleItem: articleProps) => {
   const { title, date, imageUrl, author, article } = articleItem;
 
   const articleContainer = document.createElement('div');
