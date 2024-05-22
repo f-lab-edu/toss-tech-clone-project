@@ -27,8 +27,14 @@ const start = () => {
 
 // document.addEventListener('DOMContentLoaded', start);
 
-const createArticleListItem = (articles) => {
-  const listItems = [];
+type articleProps = {
+  title: string;
+  subTitle: string;
+  date: string;
+};
+
+const createArticleListItem = (articles: articleProps[]) => {
+  const listItems: HTMLElement[] = [];
 
   articles.forEach((article, index) => {
     const listItem = document.createElement('li');
@@ -59,11 +65,11 @@ const createArticleListItem = (articles) => {
   return listItems;
 };
 
-const addListItems = (listItems) => {
+const addListItems = (listItems: HTMLElement[]) => {
   const list = document.getElementById('article-list');
 
   listItems.forEach((item) => {
-    list.appendChild(item);
+    list?.appendChild(item);
   });
 };
 
