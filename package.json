@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "http-server"
+    "start": "http-server",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "http-server": "^14.1.1",
     "jest": "^29.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
