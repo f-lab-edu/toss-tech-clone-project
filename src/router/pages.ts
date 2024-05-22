@@ -6,7 +6,7 @@ import {
 } from '../app.js';
 import createArticleDetailPage from '../article.js';
 
-export default (container) => {
+export default (container: HTMLElement) => {
   const home = () => {
     container.replaceChildren(start());
 
@@ -16,7 +16,11 @@ export default (container) => {
     });
   };
 
-  const article = async (params) => {
+  type paramsProps = {
+    id: string;
+  };
+
+  const article = async (params: paramsProps) => {
     const { id } = params;
 
     fetchData().then((articles) => {
