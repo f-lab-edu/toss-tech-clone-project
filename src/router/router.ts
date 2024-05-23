@@ -2,7 +2,10 @@ const ROUTE_PARAMETER_REGEXP = /:(\w+)/g;
 const URL_FRAGMENT_REGEXP = '([^\\/]+)';
 const A_SELECTOR = 'a[data-navigation]';
 
-const extractUrlParams = (route, pathname) => {
+const extractUrlParams = (
+  route: { params: []; testRegExp: string },
+  pathname: string
+) => {
   const params = {};
 
   if (route.params.length === 0) {
@@ -11,12 +14,14 @@ const extractUrlParams = (route, pathname) => {
 
   const matches = pathname.match(route.testRegExp);
 
-  matches.shift();
+  if (matches) {
+    matches.shift();
 
-  matches.forEach((paramValue, index) => {
-    const paramName = route.params[index];
-    params[paramName] = paramValue;
-  });
+    matches.forEach((paramValue, index) => {
+      const paramName = route.params[index];
+      params[paramName] = paramValue;
+    });
+  }
 
   return params;
 };
@@ -24,7 +29,7 @@ const extractUrlParams = (route, pathname) => {
 export default () => {
   const routes = [];
   let notFound = () => {};
-  let lastPathname;
+  let lastPathname: string;
 
   const checkRoutes = () => {
     const { pathname } = window.location;
@@ -67,12 +72,13 @@ export default () => {
       return router;
     },
 
-    setNotFound: (cb) => {
+    setNotFound: (cb: () => void) => {
       notFound = cb;
       return router;
     },
 
-    navigate: (path) => {
+    navigate: (path: string) => {
+      //@ts-ignore
       window.history.pushState(null, null, path);
       checkRoutes();
     },
@@ -85,12 +91,16 @@ export default () => {
       });
 
       document.body.addEventListener('click', (e) => {
-        const { target } = e;
+        const target = e.target as Element;
 
-        if (target.closest(A_SELECTOR)) {
-          e.preventDefault();
-          const href = target.closest(A_SELECTOR).href;
-          router.navigate(href);
+        const closestLink = target.closest(A_SELECTOR);
+        if (closestLink) {
+          const href = closestLink.getAttribute('href');
+
+          if (href) {
+            e.preventDefault();
+            router.navigate(href);
+          }
         }
       });
     },
