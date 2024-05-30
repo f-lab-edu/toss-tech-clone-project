@@ -8,7 +8,7 @@ type RouteProps = {
   view?: (params: { [key: string]: string }) => void;
 };
 
-const extractUrlParams = (route: RouteProps, pathname: string) => {
+export const extractUrlParams = (route: RouteProps, pathname: string) => {
   const params: { [key: string]: string } = {};
 
   if (route.params!.length === 0) {
