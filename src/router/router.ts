@@ -2,23 +2,27 @@ const ROUTE_PARAMETER_REGEXP = /:(\w+)/g;
 const URL_FRAGMENT_REGEXP = '([^\\/]+)';
 const A_SELECTOR = 'a[data-navigation]';
 
-const extractUrlParams = (
-  route: { params: []; testRegExp: string },
-  pathname: string
-) => {
-  const params = {};
+type RouteProps = {
+  params?: string[];
+  testRegExp?: RegExp;
+  view?: (params: { [key: string]: string }) => void;
+};
 
-  if (route.params.length === 0) {
+const extractUrlParams = (route: RouteProps, pathname: string) => {
+  const params: { [key: string]: string } = {};
+
+  if (route.params!.length === 0) {
     return params;
   }
 
-  const matches = pathname.match(route.testRegExp);
+  const matches = pathname.match(route.testRegExp!);
 
   if (matches) {
     matches.shift();
 
     matches.forEach((paramValue, index) => {
-      const paramName = route.params[index];
+      const paramName = route.params![index];
+
       params[paramName] = paramValue;
     });
   }
@@ -27,7 +31,7 @@ const extractUrlParams = (
 };
 
 export default () => {
-  const routes = [];
+  const routes: RouteProps[] = [];
   let notFound = () => {};
   let lastPathname: string;
 
@@ -40,7 +44,10 @@ export default () => {
 
     const currentRoute = routes.find((route) => {
       const { testRegExp } = route;
-      return testRegExp.test(pathname);
+
+      if (testRegExp) {
+        return testRegExp.test(pathname);
+      }
     });
 
     if (!currentRoute) {
@@ -49,12 +56,12 @@ export default () => {
     }
 
     const urlParams = extractUrlParams(currentRoute, pathname);
-    currentRoute.view(urlParams);
+    currentRoute.view!(urlParams);
   };
 
   const router = {
-    addRoute: (path, view) => {
-      const params = [];
+    addRoute: (path: string, view: () => void) => {
+      const params: string[] = [];
 
       const parsedPath = path
         .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
@@ -78,8 +85,7 @@ export default () => {
     },
 
     navigate: (path: string) => {
-      //@ts-ignore
-      window.history.pushState(null, null, path);
+      window.history.pushState(null, '', path);
       checkRoutes();
     },
 
